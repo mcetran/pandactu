@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragment-header">
-    <title>Article</title>
+    <meta charset="UTF-8">
+    <title>Articles</title>
 </head>
 <body>
 <div th:include="fragment-menu"></div>
-<div method="get" th:action="@{/articles/{id}" th:each="article : ${articles}">
-    <div th:text="${article.title}">Titre de l'article</div>
+<div method="get" th:action="@{/articles}" th:each="article : ${articles}">
+    <div th:text="${article.title}"><a th:action="@{/article/{id}">Titre de l'article</a></div>
     <div th:text="${article.content}">Contenu de l'article</div>
 </div>
 </body>

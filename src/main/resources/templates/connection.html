@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment-header">
     <title>Connexion</title>
 </head>
 <body>
-
+<img alt="Image bambous" class="wallpaper" src="images/wallpaper-pandactu.jpg">
+<div th:include="fragment-menu"></div>
+<h1 class="connection-title">Connexion</h1>
+<form method="post" th:action="@{connection}" th:object="${admin}">
+    <div class="connection-form">
+        <div class="connection-input">
+            <label for="email">Email</label>
+            <input id="email" placeholder="exemple@email.com" th:field="*{email}" type="email"/>
+        </div>
+        <div class="connection-input">
+            <label for="password">Mot de passe</label>
+            <input id="password" placeholder="*******" th:field="*{password}" type="password"/>
+        </div>
+        <div class="connection-input">
+            <button type="submit">Se connecter</button>
+        </div>
+    </div>
+</form>
 </body>
 </html>

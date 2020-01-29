@@ -30,6 +30,22 @@ public class Article {
     public Article() {
     }
 
+    public Admin getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Admin author) {
+        this.author = author;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public Long getArticleId() {
         return articleId;
     }

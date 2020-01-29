@@ -1,0 +1,30 @@
+.wallpaper {
+
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Connection */
+
+.connection-title {
+    text-align: center;
+}
+
+.connection-form {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    padding: 5em;
+    margin:  5em 10em 5em 10em;
+    border-radius: 5px;
+}
+
+.connection-input {
+    background-color: #FFFFFF;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 5px;
+}

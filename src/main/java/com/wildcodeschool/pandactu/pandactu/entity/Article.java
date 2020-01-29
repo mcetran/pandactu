@@ -1,7 +1,9 @@
 package com.wildcodeschool.pandactu.pandactu.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Article {
@@ -17,6 +19,13 @@ public class Article {
     private String title;
     private String picture;
     private String source;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "id")
+    private Admin author;
+
+    @OneToMany(mappedBy = "article", cascade = CascadeType.REFRESH)
+    private List<Comment> comments = new ArrayList<>();
 
     public Article() {
     }

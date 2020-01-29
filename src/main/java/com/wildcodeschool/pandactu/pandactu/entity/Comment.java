@@ -22,6 +22,10 @@ public class Comment {
     private Date date = new Date();
     private String username;
 
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Article article;
+
     public Comment() {
     }
 

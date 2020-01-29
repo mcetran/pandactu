@@ -3,6 +3,7 @@ package com.wildcodeschool.pandactu.pandactu.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Admin {
@@ -20,6 +21,9 @@ public class Admin {
     @Email
     @Column(unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Article> articles;
 
     public Admin() {
     }

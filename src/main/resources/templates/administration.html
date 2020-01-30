@@ -14,5 +14,14 @@
     <button type="button">Annuler</button>
     <button type="input">Enregistrer</button>
 </form>
+
+<form method="POST" th:action="@{/admin/create}" th:object="${admin}">
+    <label for="email">Email :</label>
+    <input id="email" name="title" placeholder="Titre" required type="text"/>
+    <label for="name">Pseudo :</label>
+    <textarea id="name" name="content" required rows="3"></textarea>
+    <button type="button">Annuler</button>
+    <button type="input">Créer</button>
+</form>
 </body>
 </html>

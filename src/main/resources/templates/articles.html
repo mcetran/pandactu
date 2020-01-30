@@ -6,12 +6,12 @@
 </head>
 <body>
 <div th:include="fragment-menu"></div>
-<div method="get" th:action="@{/article/liste}" th:each="article : ${articles}">
+<div method="GET" th:action="@{/article/liste}" th:each="article : ${articles}">
     <div th:text="${article.date}">Date</div>
     <div th:text="${article.title}">Titre de l'article</div>
     <div th:text="${article.picture}">Image</div>
     <div th:text="${#strings.abbreviate(article.content, 400)}">Contenu de l'article</div>
-    <a th:href="@{article/{id}(id=${article.articleId})}">Lire la suite...</a>
+    <a th:href="@{/article/{id}(id=${article.articleId})}">Lire la suite...</a>
 </div>
 </body>
 </html>

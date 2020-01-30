@@ -5,12 +5,11 @@
 </head>
 <body>
 <div th:include="fragment-menu"></div>
-<div method="get" th:action="@{/articles/{id}(id=${article.articleId})}" th:each="article : ${articles}">
+<div>
     <div th:text="${article.date}">Date</div>
     <div th:text="${article.title}">Titre de l'article</div>
     <div th:text="${article.picture}">Image</div>
     <div th:text="${article.content}">Contenu de l'article</div>
-    <a th:href="@{article/{id}(id=${article.articleId})}">Lire la suite...</a>
     <div th:text="${article.source}">Source</div>
 </div>
 <form method="POST" th:action="@{/article/update/{id}(id=${article.articleId})}" th:object="${article}">
@@ -23,6 +22,9 @@
     <label for="source">Source :</label>
     <input id="source" th:field="*{source}"/>
     <button type="input">Enregistrer</button>
+</form>
+<form method="POST" th:action="@{/article/delete/{id}(id=${article.articleId})}">
+    <button type="input">Supprimer</button>
 </form>
 </body>
 </html>

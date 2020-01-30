@@ -1,7 +1,6 @@
 package com.wildcodeschool.pandactu.pandactu.controller;
 
 import com.wildcodeschool.pandactu.pandactu.entity.Article;
-import com.wildcodeschool.pandactu.pandactu.entity.Comment;
 import com.wildcodeschool.pandactu.pandactu.repository.ArticleRepository;
 import com.wildcodeschool.pandactu.pandactu.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.Optional;
 
 @Controller
@@ -57,7 +55,7 @@ public class ArticleController {
             commentRepository.deleteAll(articleFromDb.getComments());
             articleRepository.delete(articleFromDb);
         }
-        return "redirect:/accueil";
+        return "redirect:/article/liste";
     }
 
     @GetMapping("/{id}")
@@ -65,9 +63,6 @@ public class ArticleController {
         Optional<Article> article = articleRepository.findById(articleId);
         if (article.isPresent()) {
             out.addAttribute("article", article.get());
-            Comment comment = new Comment();
-            out.addAttribute("comment", comment);
-            out.addAttribute("allComment", commentRepository.findAllByArticle_ArticleId(articleId));
             out.addAttribute("actualityId", articleId);
         }
         return "article";

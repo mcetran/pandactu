@@ -4,22 +4,19 @@
     <title>Connexion</title>
 </head>
 <body>
-<img alt="Image bambous" class="wallpaper" src="images/wallpaper-pandactu.jpg">
 <div th:include="fragment-menu"></div>
-<h1 class="connection-title">Connexion</h1>
+<h2>Bienvenue sur Pandactu</h2>
 <form method="post" th:action="@{connection}" th:object="${admin}">
-    <div class="connection-form">
-        <div class="connection-input">
-            <label for="email">Email</label>
-            <input id="email" placeholder="exemple@email.com" th:field="*{email}" type="email"/>
-        </div>
-        <div class="connection-input">
-            <label for="password">Mot de passe</label>
-            <input id="password" placeholder="*******" th:field="*{password}" type="password"/>
-        </div>
-        <div class="connection-input">
-            <button type="submit">Se connecter</button>
-        </div>
+    <div>
+        <label for="email">Email</label>
+        <input id="email" placeholder="exemple@email.com" th:field="*{email}" type="email"/>
+    </div>
+    <div>
+        <label for="password">Mot de passe</label>
+        <input id="password" placeholder="*******" th:field="*{password}" type="password"/>
+    </div>
+    <div>
+        <button type="submit">Se connecter</button>
     </div>
 </form>
 </body>

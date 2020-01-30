@@ -1,7 +1,9 @@
 package com.wildcodeschool.pandactu.pandactu.controller;
 
+import com.google.common.hash.Hashing;
 import com.wildcodeschool.pandactu.pandactu.entity.Admin;
 import com.wildcodeschool.pandactu.pandactu.repository.AdminRepository;
+import com.wildcodeschool.pandactu.pandactu.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +12,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Controller
 public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
+    @Autowired
+    private ArticleRepository articleRepository;
 
     @GetMapping("/connection")
     public String connection(Model out) {
@@ -26,6 +31,10 @@ public class AdminController {
 
     @PostMapping("/connection")
     public String getConnection(@ModelAttribute Admin admin, HttpSession session) {
+        String encryptedPassword = Hashing.sha256()
+                .hashString("!p4nda" + admin.getPassword(), StandardCharsets.UTF_8)
+                .toString();
+        admin.setPassword(encryptedPassword);
         Optional<Admin> optionalAdmin = adminRepository.findByEmailAndPassword(admin.getEmail(), admin.getPassword());
         if (optionalAdmin.isPresent()) {
             admin = optionalAdmin.get();
@@ -45,7 +54,8 @@ public class AdminController {
     }
 
     @GetMapping("/accueil")
-    public String accueil() {
+    public String accueil(Model out) {
+        out.addAttribute("articles", articleRepository.findAll());
         return "home";
     }
 
@@ -56,6 +66,12 @@ public class AdminController {
 
     @GetMapping("/administration")
     public String administration() {
+        return "administration";
+    }
+
+    @PostMapping("/admin/create")
+    public String createAdmin(@ModelAttribute Admin admin) {
+        adminRepository.save(admin);
         return "administration";
     }
 }

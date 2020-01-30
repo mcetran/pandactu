@@ -6,5 +6,13 @@
 </head>
 <body>
 <div th:include="fragment-menu"></div>
+<form method="POST" th:action="@{/article/create}" th:object="${article}">
+    <label for="title">Titre :</label>
+    <input id="title" name="title" placeholder="Titre" required type="text"/>
+    <label for="article">Article :</label>
+    <textarea id="article" name="content" required rows="3"></textarea>
+    <button type="button">Annuler</button>
+    <button type="input">Enregistrer</button>
+</form>
 </body>
 </html>

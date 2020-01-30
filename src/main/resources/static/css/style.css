@@ -1,10 +1,42 @@
-.wallpaper {
-
+body {
+    margin: 0 5em;
+    padding: 0;
 }
 
+/* Compteur */
+#countDown {
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+    text-align: center;
+    font-size: 40px;
+    color: #FFFFFF;
+    background-color: thistle;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Menu */
 .menu {
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+a:hover {
+    color: thistle;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #000000;
+}
+
+li {
+    font-size: 15px;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
 /* Connection */
@@ -18,7 +50,7 @@
     flex-direction: column;
     background-color: #000000;
     padding: 5em;
-    margin:  5em 10em 5em 10em;
+    margin: 5em 10em 5em 10em;
     border-radius: 5px;
 }
 

@@ -87,7 +87,7 @@ public class Article {
     }
 
     public String getFormatedDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String date = sdf.format(getDate());
         return date;
     }

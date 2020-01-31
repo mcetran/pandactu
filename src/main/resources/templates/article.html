@@ -4,47 +4,87 @@
     <title>Article</title>
 </head>
 <body>
-<div th:include="fragment-menu"></div>
-<div>
-    <div th:text="${article.getFormatedDate()}">Date</div>
-    <div th:text="${article.title}">Titre de l'article</div>
-    <img th:src="${article.picture}"/>
-    <div th:text="${article.content}">Contenu de l'article</div>
+<header><a th:href="@{/home}"><h1>- Pandactu -</h1></a></header>
+
+<div class="article">
+    <div class="title" th:text="${article.title}">Titre de l'article</div>
+    <div class="date" th:text="${article.getFormatedDate()}">Date</div>
+    <img class="picture" th:src="${article.picture}"/>
+    <div class="content" th:text="${article.content}">Contenu de l'article</div>
 </div>
 
-<div class="card" th:each="comment : ${article.comments}">
-    <div class="card-body">
-        <p class="card-text" th:text="${comment.username}">Auteur du commentaire</p>
-    </div>
-    <div class="card-body">
-        <p class="card-text" th:text="${comment.content}">Commentaire du commentaire</p>
-    </div>
-    <div class="card-body">
-        <p class="card-text" th:text="${comment.getFormatedDate()}">Date du commentaire</p>
-    </div>
-
+<div class="comment" th:each="comment : ${article.comments}">
+    <p class="username" th:text="${comment.username}">Auteur du commentaire</p>
+    <p class="comment-content" th:text="${comment.content}">Commentaire du commentaire</p>
+    <p class="comment-date" th:text="${comment.getFormatedDate()}">Date du commentaire</p>
     <a th:href="@{/comment/delete/{id}(id=${comment.commentId})}" th:if="${isAdmin}"><i class="fa fa-trash"></i></a>
 </div>
 
-<form method="POST" th:action="@{/comment/create/{id}(id=${article.articleId})}" th:object="${comment}">
-    <label for="username">Pseudo :</label>
-    <input id="username" name="username" required type="text"/>
-    <label for="content">Commentaire :</label>
-    <textarea id="content" name="content" required rows="10"></textarea>
-    <button type="input">Envoyer</button>
+<form class="form-comment" method="POST" th:action="@{/comment/create/{id}(id=${article.articleId})}"
+      th:object="${comment}">
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Votre commentaire :</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label for="username">Pseudo :</label></td>
+            <td><input id="username" name="username" required type="text"/></td>
+        </tr>
+        <tr>
+            <td><label for="comment">Commentaire :</label></td>
+            <td><textarea cols="50" id="comment" name="content" required rows="5" style="resize:none;"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align: right;">
+                <button type="input">Envoyer</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </form>
-<form method="POST" th:action="@{/article/update/{id}(id=${article.articleId})}" th:if="${isAdmin}"
+
+<form class="form-article" method="POST" th:action="@{/article/update/{id}(id=${article.articleId})}" th:if="${isAdmin}"
       th:object="${article}">
-    <label for="title">Titre :</label>
-    <input id="title" required th:field="*{title}"/>
-    <label for="content">Article :</label>
-    <textarea id="content" required rows="10" th:field="*{content}"></textarea>
-    <label for="image">Image :</label>
-    <input id="image" th:field="*{picture}"/>
-    <button type="input">Enregistrer</button>
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Modifier l'article :</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label for="title">Titre :</label></td>
+            <td><input id="title" required th:field="*{title}"/></td>
+        </tr>
+        <tr>
+            <td><label for="content">Article :</label></td>
+            <td><textarea cols="50" id="content" required rows="5" style="resize:none;"
+                          th:field="*{content}"></textarea></td>
+        </tr>
+        <tr>
+            <td><label for="image">Image :</label></td>
+            <td><input id="image" th:field="*{picture}"/></td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+            <td style="text-align: right;">
+                <button type="input">Envoyer</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </form>
-<form method="POST" th:action="@{/article/delete/{id}(id=${article.articleId})}" th:if="${isAdmin}">
+<form class="delete-article" method="POST" th:action="@{/article/delete/{id}(id=${article.articleId})}" th:if="${isAdmin}">
     <button type="input">Supprimer</button>
 </form>
+<footer>
+    <a th:href="@{/administration}"><i class="fa fa-cog"></i></a>
+</footer>
 </body>
 </html>

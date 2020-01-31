@@ -5,7 +5,12 @@
 </head>
 <body>
 <script src="../static/script/countdown.js" th:src="@{/script/countdown.js}"></script>
-<div th:include="fragment-menu"></div>
+<header>
+    <a th:href="@{/home}"><h1>- Pandactu -</h1></a>
+</header>
+
+<p class="text-intro">Bienvenue chez Pandactu, le panda qui te tient au courant de toutes les actualités sur le nouvel
+    <span>Animal Crossing : New Horizons</span> sur Switch !</p>
 
 <div id="countDown">
     <div id="text"></div>
@@ -15,12 +20,16 @@
     <div id="seconds"></div>
 </div>
 
-<div th:each="article : ${articles}">
-    <p th:text="${article.title}">Titre de l'article</p>
-    <img th:src="${article.picture}">
-    <p th:text="${#strings.abbreviate(article.content, 400)}">Contenu de l'article</p>
-    <a th:href="@{article/{id}(id=${article.articleId})}">Lire la suite...</a>
-    <div th:text="${article.getFormatedDate()}">Date</div>
+<div class="article" th:each="article : ${articles}">
+    <p class="title" th:text="${article.title}">Titre de l'article</p>
+    <div class="date" th:text="${article.getFormatedDate()}">Date</div>
+    <img class="picture" th:src="${article.picture}">
+    <p class="content" th:text="${#strings.abbreviate(article.content, 400)}">Contenu de l'article</p>
+    <a class="content" th:href="@{article/{id}(id=${article.articleId})}">Lire la suite...</a>
 </div>
+
+<footer>
+    <a th:href="@{/administration}"><i class="fa fa-cog"></i></a>
+</footer>
 </body>
 </html>

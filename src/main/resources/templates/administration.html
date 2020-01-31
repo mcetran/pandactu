@@ -5,46 +5,98 @@
     <title>Administration</title>
 </head>
 <body>
-<div th:include="fragment-menu"></div>
-<div th:if="${isAdmin}" th:text="|Bienvenue ${adminName}|"></div>
+<header><a th:href="@{/home}"><h1>- Pandactu -</h1></a></header>
 
-<form method="POST" th:action="@{login}" th:if="!${isAdmin}" th:object="${admin}">
-    <div>
-        <label for="email">Email</label>
-        <input id="email" placeholder="exemple@email.com" th:field="*{email}" type="email"/>
-    </div>
-    <div>
-        <label for="password">Mot de passe</label>
-        <input id="password" placeholder="*******" th:field="*{password}" type="password"/>
-    </div>
-    <div>
-        <button type="submit">Se connecter</button>
-    </div>
+<div class="welcome" th:if="${isAdmin}" th:text="|Bienvenue ${adminName}|">Bienvenue !</div>
+
+<!-- Connexion -->
+<form class="form-connection" method="POST" th:action="@{login}" th:if="!${isAdmin}" th:object="${admin}">
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Connexion</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label for="email">Email</label></td>
+            <td><input id="email" placeholder="exemple@email.com" th:field="*{email}" type="email"/></td>
+        </tr>
+        <tr>
+            <td><label for="password">Mot de passe</label></td>
+            <td><input id="password" placeholder="*******" th:field="*{password}" type="password"/></td>
+            <td>
+                <button type="input">Se connecter</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </form>
 
-<form method="POST" th:action="@{/article/create}" th:if="${isAdmin}" th:object="${article}">
-    <label for="title">Titre :</label>
-    <input id="title" name="title" required type="text"/>
-    <label for="article">Article :</label>
-    <textarea id="article" name="content" required rows="10"></textarea>
-    <label for="picture">URL Image :</label>
-    <input id="picture" name="picture" type="url"/>
-    <button type="button">Annuler</button>
-    <button type="input">Enregistrer</button>
+<!-- Création article -->
+<form class="form-article-create" method="POST" th:action="@{/article/create}" th:if="${isAdmin}" th:object="${article}">
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Créer un article :</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label for="title">Titre :</label></td>
+            <td><input id="title" name="title" required type="text"/></td>
+        </tr>
+        <tr>
+            <td><label for="article">Contenu de l'article :</label></td>
+            <td><textarea cols="50" id="article" name="content" required rows="5" style="resize:none;"></textarea></td>
+        </tr>
+        <tr>
+            <td><label for="picture">URL Image :</label></td>
+            <td><input id="picture" name="picture" type="url"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align: right;">
+                <button type="input">Enregistrer</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </form>
 
-<form method="POST" th:action="@{/admin/create}" th:if="${isAdmin}" th:object="${admin}">
-    <label for="email">Email :</label>
-    <input id="email" name="email" placeholder="exemple@email.com" required type="text"/>
-    <label for="name">Pseudo :</label>
-    <input id="name" name="name" placeholder="John" required/>
-    <label for="password">Mot de passe :</label>
-    <input id="password" name="password" placeholder="********" required type="password"/>
-    <button type="button">Annuler</button>
-    <button type="input">Créer</button>
+<!-- Création admin -->
+<form class="form-admin-create" method="POST" th:action="@{/admin/create}" th:if="${isAdmin}" th:object="${admin}">
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Créer un admin :</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><label for="email">Email :</label></td>
+            <td><input id="email" name="email" placeholder="exemple@email.com" required type="text"/></td>
+        </tr>
+        <tr>
+            <td><label for="name">Pseudo :</label></td>
+            <td><input id="name" name="name" placeholder="John" required/></td>
+        </tr>
+        <tr>
+            <td> <label for="password">Mot de passe :</label></td>
+            <td><input id="password" name="password" placeholder="********" required type="password"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align: right;">
+                <button type="input">Créer</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </form>
-
-
 <button th:if="${isAdmin}"><a th:href="@{/logout}">Déconnexion</a></button>
+<footer>
+    <a th:href="@{/administration}"><i class="fa fa-cog"></i></a>
+</footer>
 </body>
 </html>

@@ -1,6 +1,82 @@
 body {
-    margin: 0 5em;
+    margin: 0;
     padding: 0;
+    background-color: #f6f2f2;
+}
+
+/* Header */
+h1 {
+    background-color: #1e1c1c;
+    color: #FFFFFF;
+    font-family: 'Sigmar One', cursive;
+    text-align: center;
+    padding: 1em 0;
+    margin: 0;
+    font-size: 3em;
+    box-shadow: 2px 7px 7px #757171;
+}
+
+a:hover {
+     color: #de8cd5;
+ }
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    color: #000000;
+}
+
+.text-intro {
+    font-family: 'Anton', sans-serif;
+    text-align: center;
+}
+
+span {
+    color: #ea2e5a;
+}
+
+/* Article */
+.article {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 15px 4px 8px #686464;
+}
+
+.title {
+    text-align: center;
+    font-family: 'Acme', sans-serif;
+    margin-top: 3em;
+}
+
+.date {
+    text-align: center;
+    font-family: 'Acme', sans-serif;
+}
+
+.picture {
+    width: 500px;
+    height: 300px;
+    margin: 1em auto 1em auto;
+    border-radius: 5px;
+}
+
+.content {
+    text-align: justify;
+    font-family: 'Bitter', serif;
+    margin: 0 10em 2em 10em;
+}
+
+.form-article {
+    display: flex;
+    justify-content: center;
+}
+
+.form-article-create {
+    display: flex;
+    justify-content: center;
 }
 
 /* Compteur */
@@ -8,6 +84,9 @@ body {
     text-align: center;
     font-family: 'Covered By Your Grace', cursive;
     color: white;
+    border: solid 1px #92ae4e;
+    border-radius: 10px 100px / 120px;
+    margin: 3em 10em;
 }
 
 #countDown div {
@@ -29,12 +108,12 @@ body {
 
 #hours {
     font-size: 150px;
-    color: #59ec8b;
+    color: #e19863;
 }
 
 #minutes {
     font-size: 100px;
-    color: #6fd3ef;
+    color: #e6d962c2;
 }
 
 #seconds {
@@ -47,28 +126,56 @@ body {
     color: #abcd58;
 }
 
-
-/* Menu */
-.menu {
+/* Commentaire */
+.form-comment {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    list-style-type: none;
+    justify-content: center;
 }
 
-a:hover {
-    color: thistle;
+.comment {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    border: solid 1px #000000;
+    margin: 2em 10em 2em 10em;
+    border-radius: 5px;
 }
 
-a:link {
-    text-decoration: none;
+.username {
+    text-align: center;
+    font-family: 'Acme', sans-serif;
+    margin-top: 1em;
+    color: #95ad5b;
 }
 
-a:visited {
-    color: #000000;
+.comment-date {
+    font-family: 'Acme', sans-serif;
+    text-align: end;
+    margin-right: 1em;
 }
 
-li {
-    font-size: 15px;
-    font-family: 'Yanone Kaffeesatz', sans-serif;
+.comment-content {
+    text-align: center;
+    font-family: 'Bitter', serif;
+}
+
+/* Form connexion */
+.form-connection {
+    display: flex;
+    justify-content: center;
+}
+
+/* Form création admin */
+.form-admin-create {
+    display: flex;
+    justify-content: center;
+}
+
+/* Footer */
+footer {
+    font-family: 'Anton', sans-serif;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 10px;
+    margin: 1em;
 }

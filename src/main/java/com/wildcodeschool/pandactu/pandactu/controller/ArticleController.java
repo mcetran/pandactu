@@ -25,7 +25,7 @@ public class ArticleController {
     public String createArticle(@ModelAttribute Article article, HttpSession session) {
         Admin admin = (Admin) session.getAttribute("session");
         if (admin == null) {
-            //TODO: FORBIDDEN => return template erreur
+            //TODO: FORBIDDEN
         }
         article.setAuthor(admin);
         Article savedArticle = articleRepository.save(article);

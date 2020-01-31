@@ -42,6 +42,6 @@ public class CommentController {
             commentRepository.delete(commentFromDb);
             return "redirect:/article/" + commentFromDb.getArticle().getArticleId();
         }
-        return "redirect:/home"; //TODO: not found
+        return "redirect:/home"; //TODO: NOT FOUND
     }
 }

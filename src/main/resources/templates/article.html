@@ -6,24 +6,44 @@
 <body>
 <div th:include="fragment-menu"></div>
 <div>
-    <div th:text="${article.date}">Date</div>
+    <div th:text="${article.getFormatedDate()}">Date</div>
     <div th:text="${article.title}">Titre de l'article</div>
-    <div th:text="${article.picture}">Image</div>
+    <img th:src="${article.picture}"/>
     <div th:text="${article.content}">Contenu de l'article</div>
-    <div th:text="${article.source}">Source</div>
 </div>
-<form method="POST" th:action="@{/article/update/{id}(id=${article.articleId})}" th:object="${article}">
+
+<div class="card" th:each="comment : ${article.comments}">
+    <div class="card-body">
+        <p class="card-text" th:text="${comment.username}">Auteur du commentaire</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text" th:text="${comment.content}">Commentaire du commentaire</p>
+    </div>
+    <div class="card-body">
+        <p class="card-text" th:text="${comment.getFormatedDate()}">Date du commentaire</p>
+    </div>
+
+    <a th:href="@{/comment/delete/{id}(id=${comment.commentId})}" th:if="${isAdmin}"><i class="fa fa-trash"></i></a>
+</div>
+
+<form method="POST" th:action="@{/comment/create/{id}(id=${article.articleId})}" th:object="${comment}">
+    <label for="username">Pseudo :</label>
+    <input id="username" name="username" required type="text"/>
+    <label for="content">Commentaire :</label>
+    <textarea id="content" name="content" required rows="10"></textarea>
+    <button type="input">Envoyer</button>
+</form>
+<form method="POST" th:action="@{/article/update/{id}(id=${article.articleId})}" th:if="${isAdmin}"
+      th:object="${article}">
     <label for="title">Titre :</label>
-    <input id="title" th:field="*{title}"/>
+    <input id="title" required th:field="*{title}"/>
     <label for="content">Article :</label>
-    <input id="content" th:field="*{content}"/>
+    <textarea id="content" required rows="10" th:field="*{content}"></textarea>
     <label for="image">Image :</label>
     <input id="image" th:field="*{picture}"/>
-    <label for="source">Source :</label>
-    <input id="source" th:field="*{source}"/>
     <button type="input">Enregistrer</button>
 </form>
-<form method="POST" th:action="@{/article/delete/{id}(id=${article.articleId})}">
+<form method="POST" th:action="@{/article/delete/{id}(id=${article.articleId})}" th:if="${isAdmin}">
     <button type="input">Supprimer</button>
 </form>
 </body>

@@ -13,7 +13,6 @@ public class Admin {
     private Long id;
 
     private String name;
-    private boolean isConnected;
 
     @NotNull
     private String password;
@@ -27,14 +26,6 @@ public class Admin {
     private List<Article> articles;
 
     public Admin() {
-    }
-
-    public boolean isConnected() {
-        return isConnected;
-    }
-
-    public void setConnected(boolean connected) {
-        isConnected = connected;
     }
 
     public List<Article> getArticles() {

@@ -1,8 +1,7 @@
 package com.wildcodeschool.pandactu.pandactu.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -13,11 +12,7 @@ public class Comment {
     private Long commentId;
 
     @Lob
-    private String commentary;
-
-    @NotNull
-    @Email
-    private String email;
+    private String content;
 
     private Date date = new Date();
     private String username;
@@ -45,20 +40,12 @@ public class Comment {
         this.commentId = commentId;
     }
 
-    public String getCommentary() {
-        return commentary;
+    public String getContent() {
+        return content;
     }
 
-    public void setCommentary(String commentary) {
-        this.commentary = commentary;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public Date getDate() {
@@ -75,5 +62,11 @@ public class Comment {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFormatedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String date = sdf.format(getDate());
+        return date;
     }
 }

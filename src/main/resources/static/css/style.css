@@ -5,14 +5,48 @@ body {
 
 /* Compteur */
 #countDown {
-    font-family: 'Yanone Kaffeesatz', sans-serif;
     text-align: center;
-    font-size: 40px;
-    color: #FFFFFF;
-    background-color: thistle;
-    border-radius: 5px;
-    padding: 10px;
+    font-family: 'Covered By Your Grace', cursive;
+    color: white;
 }
+
+#countDown div {
+    display: inline-block;
+    line-height: 1;
+    padding: 20px;
+}
+
+#countDown span {
+    display: block;
+    font-size: 20px;
+    color: black;
+}
+
+#days {
+    font-size: 200px;
+    color: #de8cd5;
+}
+
+#hours {
+    font-size: 150px;
+    color: #59ec8b;
+}
+
+#minutes {
+    font-size: 100px;
+    color: #6fd3ef;
+}
+
+#seconds {
+    font-size: 50px;
+    color: #6fd3ef;
+}
+
+#text {
+    font-size: 75px;
+    color: #abcd58;
+}
+
 
 /* Menu */
 .menu {

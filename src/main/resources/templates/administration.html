@@ -6,22 +6,45 @@
 </head>
 <body>
 <div th:include="fragment-menu"></div>
-<form method="POST" th:action="@{/article/create}" th:object="${article}">
+<div th:if="${isAdmin}" th:text="|Bienvenue ${adminName}|"></div>
+
+<form method="POST" th:action="@{login}" th:if="!${isAdmin}" th:object="${admin}">
+    <div>
+        <label for="email">Email</label>
+        <input id="email" placeholder="exemple@email.com" th:field="*{email}" type="email"/>
+    </div>
+    <div>
+        <label for="password">Mot de passe</label>
+        <input id="password" placeholder="*******" th:field="*{password}" type="password"/>
+    </div>
+    <div>
+        <button type="submit">Se connecter</button>
+    </div>
+</form>
+
+<form method="POST" th:action="@{/article/create}" th:if="${isAdmin}" th:object="${article}">
     <label for="title">Titre :</label>
-    <input id="title" name="title" placeholder="Titre" required type="text"/>
+    <input id="title" name="title" required type="text"/>
     <label for="article">Article :</label>
-    <textarea id="article" name="content" required rows="3"></textarea>
+    <textarea id="article" name="content" required rows="10"></textarea>
+    <label for="picture">URL Image :</label>
+    <input id="picture" name="picture" type="url"/>
     <button type="button">Annuler</button>
     <button type="input">Enregistrer</button>
 </form>
 
-<form method="POST" th:action="@{/admin/create}" th:object="${admin}">
+<form method="POST" th:action="@{/admin/create}" th:if="${isAdmin}" th:object="${admin}">
     <label for="email">Email :</label>
-    <input id="email" name="title" placeholder="Titre" required type="text"/>
+    <input id="email" name="email" placeholder="exemple@email.com" required type="text"/>
     <label for="name">Pseudo :</label>
-    <textarea id="name" name="content" required rows="3"></textarea>
+    <input id="name" name="name" placeholder="John" required/>
+    <label for="password">Mot de passe :</label>
+    <input id="password" name="password" placeholder="********" required type="password"/>
     <button type="button">Annuler</button>
     <button type="input">Créer</button>
 </form>
+
+
+<button th:if="${isAdmin}"><a th:href="@{/logout}">Déconnexion</a></button>
 </body>
 </html>

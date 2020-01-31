@@ -1,6 +1,7 @@
 package com.wildcodeschool.pandactu.pandactu.entity;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,10 +19,9 @@ public class Article {
     private Date date = new Date();
     private String title;
     private String picture;
-    private String source;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "author_id")
     private Admin author;
 
     @OneToMany(mappedBy = "article", cascade = CascadeType.REFRESH)
@@ -86,11 +86,9 @@ public class Article {
         this.picture = picture;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
+    public String getFormatedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String date = sdf.format(getDate());
+        return date;
     }
 }

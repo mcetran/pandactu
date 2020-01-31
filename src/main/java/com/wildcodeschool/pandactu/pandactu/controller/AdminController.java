@@ -22,14 +22,13 @@ public class AdminController {
     @Autowired
     private ArticleRepository articleRepository;
 
-    @GetMapping("/connection")
-    public String connection(Model out) {
-        Admin admin = new Admin();
-        out.addAttribute("admin", admin);
-        return "connection";
+
+    @GetMapping("/")
+    public String redirect() {
+        return "redirect:/home";
     }
 
-    @PostMapping("/connection")
+    @PostMapping("/login")
     public String getConnection(@ModelAttribute Admin admin, HttpSession session) {
         String encryptedPassword = Hashing.sha256()
                 .hashString("!p4nda" + admin.getPassword(), StandardCharsets.UTF_8)
@@ -39,39 +38,43 @@ public class AdminController {
         if (optionalAdmin.isPresent()) {
             admin = optionalAdmin.get();
             session.setAttribute("session", admin);
-            if (admin.isConnected()) {
-                return "redirect:/accueil";
-            } else {
-                return "redirect:/connection";
-            }
+            return "redirect:/administration";
         }
-        return "redirect:/connection";
+        return "redirect:/administration";
     }
 
-    @GetMapping("/deconnection")
-    public String deconnection() {
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.setAttribute("session", null);
+        return "redirect:/home";
+    }
+
+    @GetMapping("/home")
+    public String home(Model out) {
+        out.addAttribute("articles", articleRepository.findByOrderByDateDesc());
         return "home";
-    }
-
-    @GetMapping("/accueil")
-    public String accueil(Model out) {
-        out.addAttribute("articles", articleRepository.findAll());
-        return "home";
-    }
-
-    @GetMapping("/contact")
-    public String contact() {
-        return "contact";
     }
 
     @GetMapping("/administration")
-    public String administration() {
+    public String administration(Model out, HttpSession session) {
+        Admin admin = (Admin) session.getAttribute("session");
+        out.addAttribute("isAdmin", admin != null);
+        out.addAttribute("adminName", admin != null ? admin.getName() : "");
+        out.addAttribute("admin", new Admin());
         return "administration";
     }
 
     @PostMapping("/admin/create")
-    public String createAdmin(@ModelAttribute Admin admin) {
+    public String createAdmin(@ModelAttribute Admin admin, HttpSession session) {
+        Admin connectedAdmin = (Admin) session.getAttribute("session");
+        if (connectedAdmin == null) {
+            //TODO: FORBIDDEN
+        }
+        String encryptedPassword = Hashing.sha256()
+                .hashString("!p4nda" + admin.getPassword(), StandardCharsets.UTF_8)
+                .toString();
+        admin.setPassword(encryptedPassword);
         adminRepository.save(admin);
-        return "administration";
+        return "redirect:/administration";
     }
 }

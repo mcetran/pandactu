@@ -4,50 +4,23 @@
     <title>Pandactu</title>
 </head>
 <body>
+<script src="../static/script/countdown.js" th:src="@{/script/countdown.js}"></script>
 <div th:include="fragment-menu"></div>
-<!-- On affiche le timer dans un element -->
-<p id="countDown">
-    <script>
-        // On définie la date pour faire nos calculs
-        var countDownDate = new Date("Mar 20, 2020 00:00:00").getTime();
 
-        // On met à jour le calcul toutes les secondes
-        var x = setInterval(function () {
+<div id="countDown">
+    <div id="text"></div>
+    <div id="days"></div>
+    <div id="hours"></div>
+    <div id="minutes"></div>
+    <div id="seconds"></div>
+</div>
 
-            // On cherche la date et heure actuelle
-            var now = new Date().getTime();
-
-            // On cherche la distance entre la date d'aujourd'hui et la date de calcul
-            var distance = countDownDate - now;
-
-            // On calcul les jours, heures, minutes, et secondes pour le compte à rebours
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // On affiche le résultat dans l'element "countDown"
-            document.getElementById("countDown").innerHTML = days + " Jour(s) " + hours + " Heure(s) "
-                + minutes + " Minute(s) " + seconds + " Seconde(s) ";
-
-            // Si le compte à rebours est fini, on affiche du texte
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countDown").innerHTML = "IT'S OUT! GO GO GO~!";
-            }
-        }, 1000);
-    </script>
-</p>
-<div class="card" method="GET" th:action="@{/articles}" th:each="article : ${articles}">
-    <div class="card-body">
-        <p class="card-text" th:text="${article.title}">Titre de l'article</p>
-    </div>
-    <img alt="Card image" src="/images/pathToYourImage.png" th:text="${article.picture}">
-    <div class="card-body">
-        <p class="card-text" th:text="${#strings.abbreviate(article.content, 400)}">Contenu de l'article</p>
-    </div>
+<div th:each="article : ${articles}">
+    <p th:text="${article.title}">Titre de l'article</p>
+    <img th:src="${article.picture}">
+    <p th:text="${#strings.abbreviate(article.content, 400)}">Contenu de l'article</p>
     <a th:href="@{article/{id}(id=${article.articleId})}">Lire la suite...</a>
-    <div th:text="${article.date}">Date</div>
+    <div th:text="${article.getFormatedDate()}">Date</div>
 </div>
 </body>
 </html>

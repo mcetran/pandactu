@@ -4,9 +4,16 @@ body {
     background-color: #f6f2f2;
 }
 
+.button-admin {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+}
+
 /* Header */
 h1 {
-    background-color: #1e1c1c;
+    background-color: #abcd58;
     color: #FFFFFF;
     font-family: 'Sigmar One', cursive;
     text-align: center;
@@ -17,8 +24,8 @@ h1 {
 }
 
 a:hover {
-     color: #de8cd5;
- }
+    color: #de8cd5;
+}
 
 a:link {
     text-decoration: none;
@@ -34,7 +41,7 @@ a:visited {
 }
 
 span {
-    color: #ea2e5a;
+    color: #e19863;
 }
 
 /* Article */
@@ -49,11 +56,14 @@ span {
     text-align: center;
     font-family: 'Acme', sans-serif;
     margin-top: 3em;
+    font-size: 20px;
+    color: #de8cd5;
 }
 
 .date {
     text-align: center;
     font-family: 'Acme', sans-serif;
+    color: #e19863;
 }
 
 .picture {
@@ -61,12 +71,14 @@ span {
     height: 300px;
     margin: 1em auto 1em auto;
     border-radius: 5px;
+    box-shadow: 2px 2px 5px #6fd3ef;
 }
 
 .content {
     text-align: justify;
     font-family: 'Bitter', serif;
     margin: 0 10em 2em 10em;
+    font-size: 15px;
 }
 
 .form-article {
@@ -84,7 +96,7 @@ span {
     text-align: center;
     font-family: 'Covered By Your Grace', cursive;
     color: white;
-    border: solid 1px #92ae4e;
+    border: solid 1px #abcd58;
     border-radius: 10px 100px / 120px;
     margin: 3em 10em;
 }
@@ -159,16 +171,23 @@ span {
     font-family: 'Bitter', serif;
 }
 
-/* Form connexion */
+/* Admin */
+.form-admin-create {
+    display: flex;
+    justify-content: center;
+}
+
 .form-connection {
     display: flex;
     justify-content: center;
 }
 
-/* Form création admin */
-.form-admin-create {
-    display: flex;
-    justify-content: center;
+.welcome {
+    text-align: center;
+    font-family: 'Sigmar One', cursive;
+    color: #e19863;
+    margin: 2em;
+    font-size: 22px;
 }
 
 /* Footer */

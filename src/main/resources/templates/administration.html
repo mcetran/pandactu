@@ -7,7 +7,7 @@
 <body>
 <header><a th:href="@{/home}"><h1>- Pandactu -</h1></a></header>
 
-<div class="welcome" th:if="${isAdmin}" th:text="|Bienvenue ${adminName}|">Bienvenue !</div>
+<div class="welcome" th:if="${isAdmin}" th:text="|Bienvenue ${adminName} !|">Bienvenue !</div>
 
 <!-- Connexion -->
 <form class="form-connection" method="POST" th:action="@{login}" th:if="!${isAdmin}" th:object="${admin}">
@@ -34,7 +34,8 @@
 </form>
 
 <!-- Création article -->
-<form class="form-article-create" method="POST" th:action="@{/article/create}" th:if="${isAdmin}" th:object="${article}">
+<form class="form-article-create" method="POST" th:action="@{/article/create}" th:if="${isAdmin}"
+      th:object="${article}">
     <table>
         <thead>
         <tr>
@@ -82,7 +83,7 @@
             <td><input id="name" name="name" placeholder="John" required/></td>
         </tr>
         <tr>
-            <td> <label for="password">Mot de passe :</label></td>
+            <td><label for="password">Mot de passe :</label></td>
             <td><input id="password" name="password" placeholder="********" required type="password"/></td>
         </tr>
         <tr>
@@ -96,7 +97,7 @@
 </form>
 <button th:if="${isAdmin}"><a th:href="@{/logout}">Déconnexion</a></button>
 <footer>
-    <a th:href="@{/administration}"><i class="fa fa-cog"></i></a>
+    <a class="button-admin" th:href="@{/administration}"><i class="fa fa-cog"></i></a>
 </footer>
 </body>
 </html>

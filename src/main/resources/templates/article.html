@@ -80,11 +80,12 @@
         </tbody>
     </table>
 </form>
-<form class="delete-article" method="POST" th:action="@{/article/delete/{id}(id=${article.articleId})}" th:if="${isAdmin}">
+<form class="delete-article" method="POST" th:action="@{/article/delete/{id}(id=${article.articleId})}"
+      th:if="${isAdmin}">
     <button type="input">Supprimer</button>
 </form>
 <footer>
-    <a th:href="@{/administration}"><i class="fa fa-cog"></i></a>
+    <a class="button-admin" th:href="@{/administration}"><i class="fa fa-cog"></i></a>
 </footer>
 </body>
 </html>
